@@ -1,34 +1,32 @@
 #ifndef LIST_H
 #define LIST_H
 
-template<typename T>
 class List
 {
 public:
 	List();
 	~List();
-	//Метод добавления элемента в конец списка
-	void add_end(T data);
-	//Чтение количества элементов в списке
+	//РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
+	void add_end(int data);
+	//Р§С‚РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ РІ СЃРїРёСЃРєРµ
 	int getSize() { return size; };
-	//Оператор квадратные скобки
-	T& operator[](const int index);
-	//Метод удаления элемента из начала списка
+	//РћРїРµСЂР°С‚РѕСЂ РєРІР°РґСЂР°С‚РЅС‹Рµ СЃРєРѕР±РєРё
+	int& operator[](const int index);
+	//РњРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР°
 	void del_front();
-	//Освобождение памяти
+	//РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
 	void clear();
-	//Метод удаления дубликатов из списка
+	//РњРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ РґСѓР±Р»РёРєР°С‚РѕРІ РёР· СЃРїРёСЃРєР°
 	void del_dups();
 
 private:
-	template<typename T>
 	class Node
 	{
 	public:
 		Node* nextNode;
-		T data;
+		int data;
 
-		Node(T data = T(), Node* nextNode = nullptr)
+		Node(int data = int(), Node* nextNode = nullptr)
 		{
 			this->data = data;
 			this->nextNode = nextNode;
@@ -36,47 +34,43 @@ private:
 	};
 
 	int size;
-	Node<T>* head;
+	Node* head;
 };
 
 
-template<typename T>
-List<T>::List()
+List::List()
 {
 	size = 0;
 	head = nullptr;
 }
 
-template<typename T>
-List<T>::~List()
+List::~List()
 {
 	clear();
 }
 
-template<typename T>
-void List<T>::add_end(T data)
+void List::add_end(int data)
 {
 	if (head == nullptr)
 	{
-		head = new Node<T>(data);
+		head = new Node(data);
 	}
 	else
 	{
-		Node<T>* current = this->head;
+		Node* current = this->head;
 		while (current->nextNode != nullptr) {
 			current = current->nextNode;
 		}
-		current->nextNode = new Node<T>(data);
+		current->nextNode = new Node(data);
 	}
 	size++;
 }
 
 
-template<typename T>
-T& List<T>::operator[](const int index)
+int& List::operator[](const int index)
 {
 	int counter = 0;
-	Node<T>* current = this->head;
+	Node* current = this->head;
 	while (current != nullptr)
 	{
 		if (counter == index)
@@ -88,17 +82,15 @@ T& List<T>::operator[](const int index)
 	}
 }
 
-template<typename T>
-void List<T>::del_front()
+void List::del_front()
 {
-	Node<T>* temp = head;
+	Node* temp = head;
 	head = temp->nextNode;
 	delete temp;
 	size--;
 }
 
-template<typename T>
-void List<T>::clear()
+void List::clear()
 {
 	while (size)
 	{
@@ -106,15 +98,14 @@ void List<T>::clear()
 	}
 }
 
-template<typename T>
-void List<T>::del_dups()
+void List::del_dups()
 {
-	Node<T>* current = head;
+	Node* current = head;
 	while (current != nullptr) {
-		Node<T>* checker = current;
+		Node* checker = current;
 		while (checker->nextNode != nullptr) {
 			if (checker->nextNode->data == current->data) {
-				Node<T>* toDelete = checker->nextNode;
+				Node* toDelete = checker->nextNode;
 				checker->nextNode = toDelete->nextNode;
 				delete toDelete;
 				size--;
