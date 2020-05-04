@@ -1,7 +1,6 @@
-﻿//Кулитков Л.Е. РИ-280017
+//Кулитков Л.Е. РИ-280017
 #include <iostream>
 #include "List.h"
-using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
@@ -10,16 +9,16 @@ int main()
 {
 	setlocale(LC_ALL, "ru");
 
-	List<string> lst;
-	lst.add_end("Петров");
-	lst.add_end("Сергеев");
-	lst.add_end("Яшин");
-	lst.add_end("Андреев");
-	lst.add_end("Сергеев");
-	lst.add_end("Иванов");
-	lst.add_end("Петров");
-	lst.add_end("Андреев");
-	lst.add_end("Лаптев");
+	List lst;
+	lst.add_end(1);
+	lst.add_end(3);
+	lst.add_end(3);
+	lst.add_end(2);
+	lst.add_end(1);
+	lst.add_end(5);
+	lst.add_end(6);
+	lst.add_end(2);
+	lst.add_end(5);
 
 	cout << "Наш список:" << endl;
 
