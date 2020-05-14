@@ -26,7 +26,7 @@ void BinaryTree::Clear(TreeNode* TN)
 	}
 }
 
-BinaryTree::TreeNode* BinaryTree::Search(const int data)
+TreeNode* BinaryTree::Search(const int data)
 {
 	auto temp = root;
 	while (temp != nullptr && temp->data != data)
@@ -92,6 +92,11 @@ void BinaryTree::Insert(const int data, TreeNode* TN)
 				}
 				else { temp = temp->right; }
 			}
+			else 
+			{ 
+				std::cout << "Значение " << data << " не было добавлено в дерево, потому что не уникально" << std::endl;
+				return;
+			}
 		}
 
 	}
@@ -105,7 +110,7 @@ void BinaryTree::Insert(const int data, TreeNode* TN)
 		{
 			temp->right = new TreeNode(data);
 		}
-		else { std::cout << "�������� " << data << " �� ���� ��������� � ������, ������ ��� �� ���������" << std::endl; }
+		else { std::cout << "Значение " << data << " не было добавлено в дерево, потому что не уникально" << std::endl; }
 	}
 }
 
