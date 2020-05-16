@@ -18,10 +18,13 @@ public:
 		this->left = left;
 		this->right = right;
 	}
-
+	
+private:
 	int data;
 	TreeNode* left;
 	TreeNode* right;
+	
+	friend class BinaryTree;
 };
 
 
